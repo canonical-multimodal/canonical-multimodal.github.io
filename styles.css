@@ -1,0 +1,1549 @@
+@import url('https://fonts.cdnfonts.com/css/chalkduster');
+
+.container {
+    display: flex;
+  }
+
+.left-container {
+    width: 170px;
+    border: 1px dashed #000;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 350px;
+}
+
+.right-container {
+    flex-grow: 1;
+    min-height: 200px;
+    padding: 10px;
+    max-width: 500px;
+}
+
+.draggable-triplet {
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.draggable-image {
+    width: 30%;
+}
+
+#drop-container {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+
+#main-container {
+    text-align: center;
+
+}
+
+#active-triplet {
+    width: 100%;
+}
+
+#legend {
+    width: 80%;
+}
+
+.active-img {
+    width: 100%;
+}
+
+.active-container {
+    display: inline;
+}
+
+.metrics div img {
+    width: 70%;
+    margin-bottom: 8px;
+}
+
+.vals {
+    font-family: sans-serif;
+    font-size: 12pt;
+}
+
+.metrics {
+    display: flex; 
+    margin-top: 5px;
+}
+
+.metrics div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metrics {
+    display: flex; 
+    justify-content: center;
+}
+
+#metrics-2 {
+    visibility: hidden;
+}
+
+#drop-text {
+    margin-bottom: 5px;
+}
+
+#big-container {
+    align-items: center;
+    justify-content: center;
+}
+
+code {
+    font-family: Consolas,"courier new";
+    color: black;
+    background-color: #f1f1f1;
+    padding: 10px;
+    display: block;
+}
+
+.code-col {
+    width: 50%;
+}
+
+#code-container {
+    text-align: left;
+}
+
+.vals-x-1 {
+    color: #f175ad;
+}
+
+.vals-x-2 {
+    color: #fbad29;
+}
+
+.vals-x-3 {
+    color: #a0cd49;
+}
+
+.vals-x-4 {
+    color: #2fc1d5;
+}
+
+.vals-x-5 {
+    color: #9b8579;
+}
+
+/* Original website */
+
+body {
+    /* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300; */
+    font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 21px;
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6,
+.hero-title, .hero-action-label, .tldr-title, .abstract-dropdown-summary {
+    font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Main page wrapper – wider content, smaller effective margins */
+#page {
+    width: 1200px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+h1 {
+    /* color: #00a1ff; */
+    font-size: 35px;
+    font-weight: 1000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.disclaimerbox {
+    background-color: #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 20px;
+}
+
+video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+img.rounded {
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+a:link,
+a:visited {
+    color: #000000 ;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline #f14d68 ;
+}
+
+td.dl-link {
+    height: 160px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.layered-paper-big {
+    /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+        0px 0px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The top layer shadow */
+        5px 5px 0 0px #fff,
+        /* The second layer */
+        5px 5px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The second layer shadow */
+        10px 10px 0 0px #fff,
+        /* The third layer */
+        10px 10px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The third layer shadow */
+        15px 15px 0 0px #fff,
+        /* The fourth layer */
+        15px 15px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The fourth layer shadow */
+        20px 20px 0 0px #fff,
+        /* The fifth layer */
+        20px 20px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The fifth layer shadow */
+        25px 25px 0 0px #fff,
+        /* The fifth layer */
+        25px 25px 1px 1px rgba(0, 0, 0, 0.35);
+    /* The fifth layer shadow */
+    margin-left: 10px;
+    margin-right: 45px;
+}
+
+.paper-big {
+    /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+        0px 0px 1px 1px rgba(0, 0, 0, 0.35);
+    /* The top layer shadow */
+
+    margin-left: 10px;
+    margin-right: 45px;
+}
+
+
+.layered-paper {
+    /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+        0px 0px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The top layer shadow */
+        5px 5px 0 0px #fff,
+        /* The second layer */
+        5px 5px 1px 1px rgba(0, 0, 0, 0.35),
+        /* The second layer shadow */
+        10px 10px 0 0px #fff,
+        /* The third layer */
+        10px 10px 1px 1px rgba(0, 0, 0, 0.35);
+    /* The third layer shadow */
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+
+.vert-cent {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+sup {
+    font-size: 0.8em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.5em;
+    color: #000;
+    text-decoration:none
+}
+
+.carousel-control-prev {
+    margin-left: -50px;
+    height: 300px;
+}
+
+.carousel-control-next {
+    margin-right: -50px;
+    height: 300px;
+}
+
+.carousel-item {
+    /* height: 234px; */
+    overflow: hidden;
+    /* width: 100%; */
+    text-align: center;
+}
+
+.carousel-inner .item img {
+    margin: auto;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    opacity: 1
+}
+
+.carousel-control-next:focus,
+.carousel-control-next:hover,
+.carousel-control-prev:focus,
+.carousel-control-prev:hover {
+    opacity: 1
+}
+
+.slider-navigation-next,
+.slider-navigation-previous {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background: gray center center no-repeat;
+    background-size: 20px 20px;
+    border: 1px solid #fff;
+    border-radius: 25091983px;
+    box-shadow: 0 2px 5px #3232321a;
+    top: 35%;
+    margin-top: -20px;
+    left: 0;
+    cursor: pointer;
+    transition: transform .3s, opacity .3s, -webkit-transform .3s
+}
+
+.slider-navigation-next2,
+.slider-navigation-previous2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    top: 50%;
+    margin-top: -25px;
+    left: 0;
+    cursor: pointer;
+    transition: all .3s ease
+}
+
+.slider-navigation-next2:hover,
+.slider-navigation-previous2:hover {
+    transform: scale(1.25);
+}
+
+.slider-navigation-next2:hover svg polyline,
+.slider-navigation-previous2:hover svg polyline {
+    stroke: #333;
+    stroke-width: 9;
+}
+
+.slider-navigation-next2:active,
+.slider-navigation-previous2:active {
+    transform: scale(1.15);
+}
+
+.slider-navigation-next svg,
+.slider-navigation-previous svg {
+    width: 25%;
+    background: gray
+}
+
+.slider-navigation-next2 svg,
+.slider-navigation-previous2 svg {
+    width: 25%;
+    background: none;
+    transition: all .3s ease;
+}
+
+.slider-navigation-next2 svg polyline,
+.slider-navigation-previous2 svg polyline {
+    transition: all .3s ease;
+}
+
+.slider-navigation-next {
+    left: auto;
+    right: 0;
+    background: gray center center no-repeat;
+    background-size: 20px 20px
+}
+
+.slider-navigation-next2 {
+    left: auto;
+    right: 0;
+    background: none;
+}
+
+.teaser-carousel {
+    width: 670px;
+    margin: auto;
+    height: 400px;
+}
+
+.teaser-img {
+    height: 500px !important;
+}
+
+.inversion-carousel {
+    width: 1100px;
+    margin: auto;
+    height: 300px;
+}
+
+.inversion-img {
+    height: 300px !important;
+}
+
+.dataset-carousel {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    height: auto;
+}
+
+.dataset-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+#method-description {
+    text-align: left;
+    margin: auto;
+}
+
+#nn-description {
+    width: 1100px;
+    margin: auto;
+}
+
+#inversion-description {
+    width: 1100px;
+    margin: auto;
+    /* margin-bottom: 0px; */
+}
+
+#dataset-description {
+    width: 1100px;
+    margin: auto;
+}
+#teaser-description {
+    width: 1100px;
+    max-width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Centered figures constrained to content width (align with text margins). Same frame as wrap figures. */
+.content-figure {
+    width: 1100px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+/* Same shadow, border, and highlight as wrap figures for non-video content figures */
+.content-figure:not(.content-figure-video) {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+.content-figure img {
+    max-width: 100%;
+    height: auto;
+}
+.content-figure:not(.content-figure-video) img {
+    display: block;
+    border-radius: 6px;
+}
+.content-figure figcaption {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.25;
+    text-align: left;
+    /* italicize */
+    font-style: italic;
+}
+
+.content-figure-video .teaser-video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 22px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12), 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: #0a0a0a;
+}
+
+/* Wrapper for sections that need a shared containing block */
+.teaser-block {
+    width: 1100px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* BibTeX block – full content width, same look as TLDR */
+.bibtex-wrap {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+#bibtex-code {
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #e8f6ff;
+    border-radius: 20px;
+    padding: 20px 60px 24px 28px;
+    position: relative;
+}
+#bibtex-text {
+    margin: 0;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 16px;
+    color: #343a40;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* Indent bullets inside teaser-description so lists align with body text */
+#teaser-description ul {
+    margin-left: 1.25rem;
+    padding-left: 1.25rem;
+}
+
+/* Numbered insight/theory lists – clean spacing and alignment */
+.insight-list,
+.content-list {
+    width: 1100px;
+    max-width: 100%;
+    margin: 0.5em auto 1.5em;
+    padding-left: 2em;
+    box-sizing: border-box;
+    font-size: 1em;
+    line-height: 1.6;
+    color: inherit;
+}
+.insight-list {
+    list-style-type: decimal;
+}
+.content-list {
+    list-style-type: disc;
+}
+.insight-list li,
+.content-list li {
+    margin-bottom: 1em;
+    padding-left: 0.35em;
+}
+.insight-list li:last-child,
+.content-list li:last-child {
+    margin-bottom: 0;
+}
+
+#bold {
+    font-weight: 700;
+}
+
+/* TLDR block – callout style with left bar, matches page accent */
+.tldr-block {
+    width: 1100px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #e8f6ff;
+    border-left: 5px solid #00a1ff;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 28px 24px 28px;
+}
+.tldr-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00a1ff;
+    margin: 0 0 10px 0;
+}
+.tldr-text {
+    font-size: 1em;
+    color: #343a40;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Question block – same callout style as TLDR */
+.question-block {
+    width: 1100px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #e8f6ff;
+    border-left: 5px solid #00a1ff;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 28px 24px 28px;
+}
+.question-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00a1ff;
+    margin: 0 0 10px 0;
+    font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.question-text {
+    font-size: 1em;
+    color: #343a40;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Abstract dropdown */
+.abstract-dropdown {
+    width: 1100px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.abstract-dropdown-summary {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #212529;
+    padding: 16px 24px;
+    background: #e8f6ff;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+.abstract-dropdown-summary::-webkit-details-marker {
+    display: none;
+}
+.abstract-dropdown-summary::before {
+    content: "▸ ";
+    color: #17a2b8;
+    margin-right: 8px;
+}
+.abstract-dropdown[open] .abstract-dropdown-summary::before {
+    content: "▾ ";
+}
+.abstract-dropdown-summary:hover {
+    background: #d6eeff;
+}
+.abstract-dropdown-content {
+    padding: 20px 24px 24px 24px;
+    background: #fff;
+    border-top: 1px solid #dee2e6;
+}
+.abstract-dropdown-content p {
+    margin: 0;
+    line-height: 1.65;
+    color: #212529;
+}
+
+.carousel .carousel-indicators{
+   bottom: -70px; 
+   left: 30px;
+ }
+
+ .carousel .carousel-indicators li {
+    background-color: #bbb;
+    /* border-color: #000;
+    border-style: solid;
+    border-width: 1px; */
+
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+  }
+
+  .carousel .carousel-indicators li.active {
+    background-color: #717171;
+    /* border-color: black;
+    border-style: solid;
+    border-width: 1px; */
+
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+  }
+ 
+
+  .style_bg {
+    background: url(webpage_assets/cloud_background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .ba {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.br-pill {
+    border-radius: 9999px;
+}
+
+.bw1 {
+    border-width: .125rem;
+}
+
+.bw2 {
+    border-width: .25rem;
+}
+
+.dib {
+    display: inline-block;
+}
+
+.fw6 {
+    font-weight: 600;
+}
+
+.tracked {
+    letter-spacing: .1em;
+}
+
+.no_hover{
+	color:  white;
+    text-decoration: none;
+}
+.no_hover:hover{
+	color:  #f14d68;
+    text-decoration: none;
+}
+/* .no_hover,
+.no_hover:link,
+.no_hover:visited {
+    color:  white;
+    text-decoration: none;
+}
+.no_hover:hover {
+    color:  #f14d68;
+    text-decoration: none;
+} */
+
+
+.black {
+    color: #000;
+}
+
+.near-black {
+    color: #222222;
+}
+
+.dark-gray {
+    color: #333;
+}
+
+.mid-gray {
+    color: #555;
+}
+
+.white {
+    color: #fff;
+}
+
+.purple {
+    color: #5e2ca5;
+}
+
+.light-purple {
+    color: #a463f2;
+}
+
+.dark-pink {
+    color: #d5008f;
+}
+
+.hot-pink {
+    color: #ff41b4;
+}
+
+.dark-green {
+    color: #137752;
+}
+
+.navy {
+    color: #001b44;
+}
+
+.dark-blue {
+    color: #00449e;
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+.bg-near-black {
+    background-color: #222222;
+}
+
+.bg-dark-gray {
+    background-color: #333;
+}
+
+.bg-mid-gray {
+    background-color: #555;
+}
+
+.bg-purple {
+    background-color: #5e2ca5;
+}
+
+.bg-light-purple {
+    background-color: #a463f2;
+}
+
+.bg-dark-pink {
+    background-color: #d5008f;
+}
+
+.bg-hot-pink {
+    background-color: #ff41b4;
+}
+
+.bg-dark-green {
+    background-color: #137752;
+}
+
+.bg-navy {
+    background-color: #001b44;
+}
+
+.bg-dark-blue {
+    background-color: #00449e;
+}
+
+.pv2 {
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+}
+
+.ph3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.mb2 {
+    margin-bottom: .5rem;
+}
+
+.mb4 {
+    margin-bottom: 2rem;
+}
+
+.mt4 {
+    margin-top: 2rem;
+}
+
+.ttu {
+    text-transform: uppercase;
+}
+
+.f6 {
+    font-size: .875rem;
+}
+
+/* Button hover effects */
+.menu span:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* ------------------------------
+   Page-specific styles (moved from index.html)
+   ------------------------------ */
+
+/* Responsive author list: wraps automatically to new lines */
+.authors-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 18px;
+}
+.authors-grid .author {
+    flex: 0 1 180px; /* preferred author "column" width */
+    text-align: center;
+    white-space: nowrap;
+}
+.authors-grid .author a {
+    /* color: #0b7f73;  */
+    /* color: #17a2b8; */
+    color: #00a1ff;
+    text-decoration: none;
+}
+.authors-grid .author a:hover {
+    text-decoration: underline #f14d68 ;
+    text-decoration-thickness: 2px;
+}
+.authors-grid .author-name {
+    font-size: 25px;
+}
+.authors-grid .affil-sup {
+    font-size: 0.8em;
+}
+.authors-grid .affil-sup-red,
+.affil-sup-red {
+    color: #c00;
+}
+
+/* Title row with paper thumbnail (matches Outline teal aesthetic) */
+.hero-header {
+    width: 100%;
+    display: grid;
+    /* Use max-content so columns don't "stretch" and create huge gaps */
+    grid-template-columns: max-content 90px max-content 90px max-content;
+    align-items: center; /* vertical center vs Paper block */
+    justify-content: center;
+}
+.hero-title {
+    font-size: 48px;
+    font-weight: 1000;
+    line-height: 1.05;
+    text-align: left;
+    grid-column: 1;
+    justify-self: start;
+    min-width: 0; /* allow wrapping in grid */
+}
+.hero-title-line {
+    display: block;
+}
+.hero-title-line--sub {
+    margin-top: 12px; /* controls the gap between the two title lines */
+}
+.hero-divider {
+    width: 0;
+    height: 120px;
+    border-left: 2px dotted rgba(0, 0, 0, 0.35);
+    align-self: center;
+    grid-column: 3;
+    justify-self: center; /* center within its column */
+}
+.hero-actions {
+    grid-column: 5;
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 16px;
+}
+
+.paper-and-logos {
+    display: flex;
+    align-items: flex-start; /* align Paper and Code labels on same baseline */
+    gap: 16px;
+}
+.hero-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+.hero-action-label {
+    font-size: 25px;
+    font-weight: 500;
+    /* color: #0b7f73; */
+    color: #00a1ff;
+}
+.hero-action-icon {
+    width: 120px;
+    height: auto;
+    display: block;
+}
+.hero-action-icon--fa {
+    width: auto;
+    font-size: 100px;
+    color: #24292f;
+    line-height: 1;
+}
+
+/* Slot-machine logo reel (Meta -> MIT -> TUM) */
+.slot-machine {
+    --slot-h: 48px;
+    --slot-logo-h: 48px;
+    width: auto;
+    height: var(--slot-h);
+    overflow: hidden;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Center slot-machine specifically to the paper icon (not the label) */
+.paper-and-logos .slot-machine {
+    margin-top: 34px; /* equals label height+gap; adjust if needed */
+}
+.slot-machine .reel {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    animation: slotSpin 4s infinite;
+}
+.slot-machine .icon {
+    height: var(--slot-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slot-logo {
+    height: var(--slot-logo-h);
+    width: auto;
+    display: block;
+}
+
+@keyframes slotSpin {
+    /* Hold each logo ~1s, animate transition quickly between */
+    0% { transform: translateY(0); }
+    26% { transform: translateY(0); }
+    33% { transform: translateY(calc(-1 * var(--slot-h))); }
+    59% { transform: translateY(calc(-1 * var(--slot-h))); }
+    66% { transform: translateY(calc(-2 * var(--slot-h))); }
+    92% { transform: translateY(calc(-2 * var(--slot-h))); }
+    100% { transform: translateY(calc(-3 * var(--slot-h))); } /* back to Meta clone */
+}
+
+@media (max-width: 1200px) {
+    #page {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 1100px) {
+    .hero-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .hero-title {
+        text-align: center;
+        grid-column: auto;
+    }
+    .hero-divider {
+        display: none;
+    }
+    .hero-actions {
+        padding-left: 0;
+        grid-column: auto;
+    }
+}
+
+/* Outline (TOC) card on the left – matches TLDR/Abstract palette */
+.toc-card {
+    position: fixed;
+    left: 24px;
+    top: 92px;
+    width: 280px;
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+    padding: 22px 20px 24px 20px;
+    background-color: #e8f6ff;
+    border: 1px solid rgba(0, 161, 255, 0.15);
+    border-right: none;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 2px 12px rgba(0, 161, 255, 0.08);
+    z-index: 1000;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.toc-card.is-collapsed {
+    transform: translateX(calc(-100% - 30px));
+    opacity: 0;
+    pointer-events: none;
+}
+.toc-card-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #00a1ff;
+    margin: 0 0 18px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(0, 161, 255, 0.2);
+    letter-spacing: 0.02em;
+}
+.toc-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.toc-list li {
+    margin: 0 0 12px 0;
+}
+.toc-card .toc-list a {
+    display: block;
+    color: #0088dd;
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 1.35;
+    padding: 4px 0;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+.toc-card .toc-list a:hover {
+    color: #00a1ff;
+    background: rgba(0, 161, 255, 0.06);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    text-decoration-skip-ink: auto;
+}
+.toc-card .toc-list a.active {
+    font-weight: 800;
+    color: #00a1ff;
+    background: rgba(0, 161, 255, 0.08);
+}
+.toc-card .toc-list .lvl-2 a {
+    font-size: 15px;
+    padding-left: 16px;
+    color: #0090e8;
+    opacity: 0.95;
+}
+
+/* Right-wrapped figure next to text. Set width per figure via inline style: --wrap-figure-width: 45%; */
+.wrap-figure-right {
+    float: right;
+    width: var(--wrap-figure-width, min(600px, 50%));
+    margin: 4px 0 12px 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    box-sizing: border-box;
+}
+.wrap-figure-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+.wrap-figure-right figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.25;
+    text-align: left;
+}
+
+/* Left-wrapped figure. Set width via inline style: --wrap-figure-width: 45%; */
+.wrap-figure-left {
+    float: left;
+    width: var(--wrap-figure-width, min(600px, 50%));
+    margin: 4px 20px 12px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    box-sizing: border-box;
+}
+.wrap-figure-left img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+.wrap-figure-left figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.25;
+    text-align: left;
+}
+
+.wrap-figure-carousel {
+    padding: 12px;
+}
+.wrap-figure-carousel .carousel {
+    border-radius: 10px;
+    overflow: visible;
+    padding: 0 48px 36px 48px;
+    position: relative;
+}
+.wrap-figure-carousel .carousel-inner,
+.wrap-figure-carousel .carousel-item {
+    border-radius: 10px;
+    overflow: hidden;
+}
+.wrap-figure-carousel .carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+.wrap-figure-carousel .carousel-control-prev,
+.wrap-figure-carousel .carousel-control-next {
+    width: 36px;
+    height: 36px;
+    margin-top: -18px;
+    top: 50%;
+    opacity: 0.7;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transition: opacity 0.2s ease;
+}
+.wrap-figure-carousel .carousel-control-prev:hover,
+.wrap-figure-carousel .carousel-control-next:hover {
+    opacity: 1;
+}
+.wrap-figure-carousel .carousel-control-prev-icon,
+.wrap-figure-carousel .carousel-control-next-icon {
+    filter: invert(0.4);
+    width: 24px;
+    height: 24px;
+}
+.wrap-figure-carousel .carousel-control-prev {
+    left: 8px;
+    margin-left: 0;
+}
+.wrap-figure-carousel .carousel-control-next {
+    right: 8px;
+    margin-right: 0;
+}
+.wrap-figure-carousel .carousel-indicators {
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+.wrap-clear {
+    clear: both;
+}
+
+@media (max-width: 960px) {
+    .wrap-figure-right,
+    .wrap-figure-left {
+        float: none;
+        width: 100%;
+        margin: 12px auto;
+    }
+}
+
+.toc-toggle {
+    position: fixed;
+    left: 18px;
+    top: 64px;
+    z-index: 1001;
+    border: 1px solid rgba(0, 161, 255, 0.3);
+    border-radius: 9999px;
+    padding: 8px 14px;
+    background-color: #e8f6ff;
+    color: #00a1ff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 10px rgba(0, 161, 255, 0.12);
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.toc-toggle:hover {
+    background-color: #d6eeff;
+}
+.toc-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 161, 255, 0.2), 0 2px 10px rgba(0, 161, 255, 0.12);
+}
+.toc-anchor {
+    display: block;
+    height: 0;
+    scroll-margin-top: 18px;
+}
+
+/* Only show the outline card when there's room for it */
+@media (min-width: 1400px) {
+    .toc-toggle {
+        display: none;
+    }
+    .toc-card {
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    /* Nudge content right when outline is visible */
+    #page {
+        transform: translateX(155px);
+    }
+}
+
+/* BibTeX copy button (replaces inline JS hover scaling) */
+#copy-button:hover {
+    transform: scale(1.1);
+}
+
+/* Commuting diagram – diagram left, subfigures fill rest; full content width */
+.commuting-diagram-wrap {
+    --cd-stroke: #555;
+    --cd-accent: #EB7CB5;
+    --cd-text: #212529;
+    --cd-muted: #6c757d;
+    --cd-dim: 0.5;
+    width: 100%;
+    max-width: 1100px;
+    margin: 24px auto;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+@media (max-width: 960px) {
+    .commuting-diagram-wrap {
+        grid-template-columns: 1fr;
+    }
+}
+.commuting-diagram-wrap .cd-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+.commuting-diagram-wrap .cd-hdr {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    color: var(--cd-muted);
+    font-size: 18px;
+    letter-spacing: 0.02em;
+}
+.commuting-diagram-wrap .cd-diagram {
+    padding: 12px;
+}
+.commuting-diagram-wrap .cd-diagram-inner {
+    position: relative;
+}
+.commuting-diagram-wrap .cd-diagram svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* Math overlay: positions match viewBox 600×520; % = (x/600)*100, (y/520)*100 */
+.commuting-diagram-wrap .cd-math-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.commuting-diagram-wrap .cd-math-overlay span {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    color: var(--cd-text);
+    white-space: nowrap;
+}
+.commuting-diagram-wrap .cd-math-node {
+    font-size: 24px !important;
+}
+.commuting-diagram-wrap .cd-math-edge {
+    font-size: 20px !important;
+}
+.commuting-diagram-wrap .cd-math-xa { left: 21.67%; top: 23.08%; }
+.commuting-diagram-wrap .cd-math-ya { left: 21.67%; top: 82.14%; }
+.commuting-diagram-wrap .cd-math-xb { left: 78.33%; top: 23.08%; }
+.commuting-diagram-wrap .cd-math-yb { left: 78.33%; top: 82.14%; }
+.commuting-diagram-wrap .cd-math-psi-top { left: 52.5%;  top: 14.42%; }
+.commuting-diagram-wrap .cd-math-fa { left: 15%; top: 54.81%; }
+.commuting-diagram-wrap .cd-math-psi-bot { left: 52.5%;  top: 94.18%; }
+.commuting-diagram-wrap .cd-math-fb { left: 89%; top: 54.81%; }
+/* MathJax output inside overlay – keep math readable and sized */
+.commuting-diagram-wrap .cd-math-overlay mjx-container {
+    font-size: inherit !important;
+}
+.commuting-diagram-wrap .cd-math-overlay .cd-math-node mjx-container {
+    font-size: 26px !important;
+}
+.commuting-diagram-wrap .cd-math-overlay .cd-math-edge mjx-container {
+    font-size: 24px !important;
+}
+.commuting-diagram-wrap .cd-node {
+    font-size: 26px;
+    font-style: italic;
+    fill: var(--cd-text);
+}
+.commuting-diagram-wrap .cd-arrow {
+    stroke: var(--cd-stroke);
+    stroke-width: 6;
+    fill: none;
+    opacity: 0.5;
+    transition: opacity 140ms ease, stroke 140ms ease, stroke-width 140ms ease, transform 140ms ease;
+    transform-origin: center;
+}
+.commuting-diagram-wrap .cd-arrow.active {
+    opacity: 1;
+    stroke: var(--cd-accent);
+    stroke-width: 9;
+    transform: scale(1.03);
+}
+.commuting-diagram-wrap .cd-label {
+    font-size: 20px;
+    font-style: italic;
+    fill: var(--cd-text);
+    opacity: 0.9;
+    user-select: none;
+}
+.commuting-diagram-wrap .cd-label.small {
+    font-size: 18px;
+}
+.commuting-diagram-wrap .cd-hitbox {
+    fill: transparent;
+    cursor: pointer;
+}
+.commuting-diagram-wrap .cd-subfig-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    padding: 12px;
+    min-height: 0;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.commuting-diagram-wrap .cd-subfig {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 160ms ease, opacity 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    opacity: 1;
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+.commuting-diagram-wrap .cd-subfig.active {
+    opacity: 1;
+    transform: scale(1.02);
+    border-width: 4px;
+    border-color: rgba(235, 124, 181, 0.5);
+    box-shadow: 0 8px 24px rgba(235, 124, 181, 0.18);
+}
+.commuting-diagram-wrap .cd-subfig .cd-title {
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--cd-muted);
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    overflow: visible;
+}
+.commuting-diagram-wrap .cd-subfig .cd-title .cd-title-text {
+    font-weight: 700;
+    color: #111;
+    font-size: 18px;
+    line-height: 1.35;
+    white-space: normal;
+    overflow: visible;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+.commuting-diagram-wrap .cd-subfig .cd-body {
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    color: var(--cd-muted);
+    font-size: 14px;
+    padding: 0;
+    line-height: 0;
+    flex: 1 1 0;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.commuting-diagram-wrap .cd-subfig .cd-body .cd-subfig-img {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    vertical-align: middle;
+    border-radius: 0 0 10px 10px;
+}
+.commuting-diagram-wrap .cd-pill {
+    font-size: 11px;
+    color: var(--cd-accent);
+    background: rgba(235, 124, 181, 0.1);
+    border: 1px solid rgba(235, 124, 181, 0.35);
+    padding: 3px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.commuting-diagram-wrap .cd-hint {
+    padding: 0 16px 14px 16px;
+    color: var(--cd-muted);
+    font-size: 13px;
+    line-height: 1.4;
+}
+.commuting-diagram-wrap .cd-kbd {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    padding: 2px 6px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background: #f1f3f5;
+    color: var(--cd-text);
+}

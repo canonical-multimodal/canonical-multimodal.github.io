@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Two-Path Diagram Hover Highlight</title>
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --text:#e9edf7;
+      --muted:#9aa6c3;
+      --stroke:#dbe3ff;
+      --accent:#7aa2ff;
+      --dim:0.35;
+      --hi:1;
+    }
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 20% 10%, #151a2a 0%, var(--bg) 60%);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      padding:24px;
+    }
+    .wrap{
+      display:grid;
+      grid-template-columns: 600px 1fr;
+      gap:18px;
+      align-items:start;
+      max-width: 1320px;
+      margin:0 auto;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      overflow:hidden;
+    }
+    .hdr{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:0.2px;
+    }
+    .diagram{ padding:16px; }
+    svg{ width:100%; height:auto; display:block; }
+
+    /* Diagram typography */
+    .node{
+      font-size: 28px;
+      font-style: italic;
+      fill: var(--text);
+    }
+
+    /* Base arrow styling */
+    .arrow{
+      stroke: var(--stroke);
+      stroke-width: 3.2;
+      fill: none;
+      opacity: 0.55;
+      transition: opacity 140ms ease, stroke 140ms ease;
+    }
+    .arrow.active{
+      opacity: 0.95;
+      stroke: var(--accent);
+    }
+
+    .label{
+      font-size: 22px;
+      font-style: italic;
+      fill: var(--text);
+      opacity: 0.95;
+      user-select:none;
+    }
+    .label.small{ font-size: 20px; }
+
+    /* Make hover targets easy */
+    .hitbox{ fill: transparent; cursor: pointer; }
+
+    /* Subfigures */
+    .subfig-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      padding:12px;
+    }
+    .subfig{
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:16px;
+      overflow:hidden;
+      transition: transform 160ms ease, opacity 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      opacity: var(--dim);
+      transform: scale(0.995);
+    }
+    .subfig.active{
+      opacity: var(--hi);
+      transform: scale(1.01);
+      border-color: rgba(122,162,255,0.55);
+      box-shadow: 0 10px 25px rgba(122,162,255,0.15);
+    }
+    .subfig .title{
+      padding:10px 12px;
+      font-size:13px;
+      color:var(--muted);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .subfig .body{
+      height:240px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(180deg, rgba(15,19,32,0.7), rgba(10,12,18,0.9));
+      color: rgba(233,237,247,0.85);
+      font-size:14px;
+    }
+    .pill{
+      font-size:12px;
+      color: rgba(233,237,247,0.9);
+      background: rgba(122,162,255,0.16);
+      border:1px solid rgba(122,162,255,0.3);
+      padding:3px 8px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .hint{
+      padding:0 16px 14px 16px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      padding:1px 6px;
+      border:1px solid rgba(255,255,255,0.14);
+      border-bottom-color: rgba(255,255,255,0.08);
+      border-radius:8px;
+      background: rgba(255,255,255,0.05);
+      color: rgba(233,237,247,0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Left: Diagram -->
+    <div class="card">
+      <div class="hdr">
+        Hover diagonal <span class="kbd">ψ</span> (x_A → x̃_B) → Subfigure 1.
+        Hover any arrow on the composed path → highlight that whole path + Subfigure 2.
+      </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 600 520" role="img" aria-label="Two-path diagram">
+          <defs>
+            <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--stroke)"></path>
+            </marker>
+          </defs>
+
+          <!-- Node positions:
+               TOP ROW: x_A (left) and x̃_B (right) are horizontally aligned.
+               BOTTOM ROW: y_A (left) and ỹ_B (right) are horizontally aligned. -->
+          <text class="node" x="70" y="120">$x_A$<tspan baseline-shift="sub" font-style="normal">A</tspan></text>
+          <text class="node" x="410" y="120">x̃<tspan baseline-shift="sub" font-style="normal">B</tspan></text>
+
+          <text class="node" x="70" y="460">y<tspan baseline-shift="sub" font-style="normal">A</tspan></text>
+          <text class="node" x="410" y="460">ỹ<tspan baseline-shift="sub" font-style="normal">B</tspan></text>
+
+          <!-- ===== Path 1 (direct) ===== -->
+          <path id="p1" class="arrow" d="M 130 105 L 380 105" marker-end="url(#arrowHead)"></path>
+          <text class="label" x="245" y="75">ψ</text>
+          <!-- Hitbox for the DIRECT ψ -->
+          <rect id="hit-p1" class="hitbox" x="210" y="55" width="110" height="70" rx="10"></rect>
+
+          <!-- ===== Path 2 (composed): x_A -> y_A -> ỹ_B -> x̃_B ===== -->
+          <!-- x_A -> y_A : f_A (down) -->
+          <path id="p2a" class="arrow" d="M 95 140 L 95 405" marker-end="url(#arrowHead)"></path>
+          <text class="label small" x="30" y="285">f<tspan baseline-shift="sub" font-style="normal">A</tspan></text>
+          <rect id="hit-p2a" class="hitbox" x="70" y="190" width="50" height="170" rx="10"></rect>
+
+          <!-- y_A -> ỹ_B : ψ (right) -->
+          <path id="p2b" class="arrow" d="M 130 445 L 380 445" marker-end="url(#arrowHead)"></path>
+          <text class="label" x="245" y="505">ψ</text>
+          <rect id="hit-p2b" class="hitbox" x="210" y="410" width="110" height="70" rx="10"></rect>
+
+          <!-- ỹ_B -> x̃_B : f_B^{-1} (up) -->
+          <path id="p2c" class="arrow" d="M 405 420 L 405 155" marker-end="url(#arrowHead)"></path>
+          <text class="label small" x="430" y="285">f<tspan baseline-shift="sub" font-style="normal">B</tspan><tspan baseline-shift="super" font-style="normal">−1</tspan></text>
+          <rect id="hit-p2c" class="hitbox" x="380" y="190" width="70" height="190" rx="10"></rect>
+
+        </svg>
+      </div>
+
+      <div class="hint">
+        Default: Subfigure 2 highlighted.
+        <br/>
+        Hover direct <span class="kbd">ψ</span> (top arrow) → highlight Path 1 + Subfigure 1.
+        <br/>
+        Hover any arrow on the composed path → highlight the whole composed path (all three arrows) + Subfigure 2.
+      </div>
+    </div>
+
+    <!-- Right: Subfigures -->
+    <div class="card">
+      <div class="hdr">Subfigures (replace placeholders with your real plots)</div>
+      <div class="subfig-grid">
+        <div id="subfig-1" class="subfig">
+          <div class="title">
+            <span>Subfigure 1 (Path 1: x_A → x̃_B via ψ)</span>
+            <span class="pill">hover top ψ</span>
+          </div>
+          <div class="body">Put your “direct ψ path” plot here</div>
+        </div>
+
+        <div id="subfig-2" class="subfig">
+          <div class="title">
+            <span>Subfigure 2 (Path 2: x_A → y_A → ỹ_B → x̃_B)</span>
+            <span class="pill">default / hover path 2</span>
+          </div>
+          <div class="body">Put your “composed path” plot here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sub1 = document.getElementById("subfig-1");
+    const sub2 = document.getElementById("subfig-2");
+  
+    const p1  = document.getElementById("p1");
+    const p2a = document.getElementById("p2a");
+    const p2b = document.getElementById("p2b");
+    const p2c = document.getElementById("p2c");
+  
+    function clearAll() {
+      [p1, p2a, p2b, p2c].forEach(p => p.classList.remove("active"));
+      sub1.classList.remove("active");
+      sub2.classList.remove("active");
+    }
+  
+    function activatePath1() {
+      clearAll();
+      p1.classList.add("active");
+      sub1.classList.add("active");
+    }
+  
+    function activatePath2() {
+      clearAll();
+      [p2a, p2b, p2c].forEach(p => p.classList.add("active"));
+      sub2.classList.add("active");
+    }
+  
+    // ---- Hover targets ----
+    const hitP1  = document.getElementById("hit-p1");
+    const hitP2a = document.getElementById("hit-p2a");
+    const hitP2b = document.getElementById("hit-p2b");
+    const hitP2c = document.getElementById("hit-p2c");
+  
+    // Path 1 (direct ψ)
+    hitP1.addEventListener("mouseenter", activatePath1);
+    hitP1.addEventListener("mouseleave", clearAll);
+  
+    // Any arrow in composed path → whole path + subfig 2
+    [hitP2a, hitP2b, hitP2c].forEach(hit => {
+      hit.addEventListener("mouseenter", activatePath2);
+      hit.addEventListener("mouseleave", clearAll);
+    });
+  
+    // Start completely neutral
+    clearAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>-->
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://www.google.com/jsapi" type="text/javascript"></script>-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet" />
+    <link href="fontawesome.all.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+	<script defer src="fontawesome.all.min.js"></script>
+    <script src="head-config.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="icon" type="image/png" href="webpage_assets/dreamsim_icon.png" />
+
+    <title>ReasonCACHE</title>
+    <meta property="og:image" content="./webpage_assets/teaser.jpg">
+    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+    <meta property="og:title" content="Canonical Multimodal Contrastive Representation Learning">
+    <meta property="og:description" content=" Across independently trained multimodal contrastive models, a single orthogonal map learned from a small set of points in one modality (say images) aligns both image and text embeddings."
+
+    <!-- Get from Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src=""></script>
+</head>
+
+<body>
+    <nav id="toc-card" class="toc-card" aria-label="Outline">
+        <div class="toc-card-title">Outline</div>
+        <div id="toc" class="toc-list" aria-label="Table of contents"></div>
+    </nav>
+    <button id="toc-toggle" class="toc-toggle" type="button" aria-controls="toc-card" aria-expanded="false">Outline</button>
+    <div id="page">
+    <br>
+    <center>
+        <div class="hero-header">
+            <div class="hero-title near-black">
+                <span class="hero-title-line">Canonical Multimodal Contrastive</span>
+                <span class="hero-title-line hero-title-line--sub">Representation Learning</span>
+            </div>
+            <div class="hero-divider" aria-hidden="true"></div>
+            <div class="hero-actions" aria-label="Header links">
+                <div class="paper-and-logos" aria-label="Paper, code and affiliations">
+                    <a class="hero-action" href="https://arxiv.org/pdf/2602.02366" target="_blank" rel="noopener noreferrer">
+                        <div class="hero-action-label">Paper</div>
+                        <img class="hero-action-icon" src="./webpage_assets/paper_icon.svg" alt="">
+                    </a>
+                    <a class="hero-action hero-action--code" href="#" target="_blank" rel="noopener noreferrer" aria-label="Code">
+                        <div class="hero-action-label">Code</div>
+                        <i class="fab fa-github hero-action-icon hero-action-icon--fa" aria-hidden="true"></i>
+                    </a>
+                    <!-- <div class="slot-machine" aria-label="Affiliations logos">
+                        <div class="reel" aria-hidden="true">
+                            <div class="icon"><img class="slot-logo" src="./webpage_assets/meta-logo.png" alt=""></div>
+                            <div class="icon"><img class="slot-logo" src="./webpage_assets/mit-logo.png" alt=""></div>
+                            <div class="icon"><img class="slot-logo" src="./webpage_assets/tum-logo.png" alt=""></div>
+                            <div class="icon"><img class="slot-logo" src="./webpage_assets/meta-logo.png" alt=""></div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="authors-grid" aria-label="Authors">
+            <div class="author">
+                <span class="author-name"><a href="https://www.mit.edu/~sharut/" target="_blank">Sharut Gupta</a><sup class="affil-sup">†,</sup><sup class="affil-sup affil-sup-red">*</sup></span>
+            </div>
+            <div class="author">
+                <span class="author-name"><a href="https://www.linkedin.com/in/sanyam-kansal-247b521a4/" target="_blank">Sanyam Kansal</a><sup class="affil-sup">‡,</sup><sup class="affil-sup affil-sup-red">*</sup></span>
+            </div>
+            <div class="author">
+                <span class="author-name"><a href="https://people.csail.mit.edu/stefje/" target="_blank">Stefanie Jegelka</a><sup class="affil-sup">†,</sup><sup class="affil-sup">§</sup></span>
+            </div>
+            <div class="author">
+                <span class="author-name"><a href="http://web.mit.edu/phillipi/" target="_blank">Phillip Isola</a><sup class="affil-sup">†</sup></span>
+            </div>
+            <div class="author">
+                <span class="author-name"><a href="https://people.csail.mit.edu/vgarg/" target="_blank">Vikas Garg</a><sup class="affil-sup">¶</sup></span>
+            </div>
+        </div>
+        <table align="center" width="500px" style="font-size: 21px;">
+            <tbody>
+                <tr>
+                    <td align="center" colspan="4" style="padding-bottom: 8px;padding-top: 10px; white-space: nowrap;">
+                        <sup style="padding-right: 2px;" class="affil-sup affil-sup-red">* </sup><em>Equal contribution</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top:10px; padding-left:12px; padding-right:12px; white-space: nowrap;">
+                        <sup style="padding-right: 2px;">† </sup> MIT CSAIL
+                    </td>
+                    <td align="center" style="padding-top:10px; padding-left:12px; padding-right:12px; white-space: nowrap;">
+                        <sup style="padding-right: 2px;">‡ </sup> IIT Kanpur
+                    </td>
+                    <td align="center" style="padding-top:10px; padding-left:12px; padding-right:12px; white-space: nowrap;">
+                        <sup style="padding-right: 2px;">§ </sup> TU Munich
+                    </td>
+                    <td align="center" style="padding-top:10px; padding-left:12px; padding-right:12px; white-space: nowrap;">
+                        <sup style="padding-right: 2px;">¶ </sup> Aalto University
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+       
+
+    </center>
+    <br><br>
+
+    <center class="content-figure content-figure-video">
+        <video class="teaser-video" src="./webpage_assets/canonical_teaser_v4.mov" controls autoplay muted loop playsinline poster="./webpage_assets/teaser.jpg" aria-label="Canonical multimodal teaser video"></video>
+    </center>
+    <br>
+    <br>
+
+    <div class="tldr-block">
+        <h2 class="tldr-title">TLDR</h2>
+        <p class="tldr-text">We show that the map between any two independently trained 
+            multimodal contrastive models can be well approximated by a <span id="bold">orthogonal map</span>, 
+            <em>shared across modalities</em> and 
+            learnable from only a few data points in one (images or text) modality.</p>
+    </div>
+    <br>
+
+    <details class="abstract-dropdown">
+        <summary class="abstract-dropdown-summary">Abstract</summary>
+        <div class="abstract-dropdown-content">
+            <p>
+                As models and data scale, independently trained networks often induce analogous notions of 
+                similarity. Yet, similarity-based measures are weaker than precise correspondence 
+                maps between distinct models. 
+                In this work, we show that the map between any two independently trained multimodal contrastive models
+                (trained on different data, with different architectures and design choices) can be 
+                well approximated by a simple orthogonal map that is shared across modalities i.e. 
+                $\tilde f(x) \approx Q f(x)$ and $\tilde g(y) \approx Q g(y)$, where $Q \in O(d)$ for models $(f, g)$ and $(\tilde f, \tilde g)$ and images $x$ and text $y$.
+                Further, we show that this map can be learned using only a few data points from a single modality (e.g., images)
+                and transfers to text. 
+                Theoretically, we show that the agreement of the multimodal similarity kernel 
+                $\langle f(x), g(y)\rangle \approx \langle \tilde f(x), \tilde g(y)\rangle$ on a small, 
+                finite set of points forces a shared orthogonal map $Q$ across modalities. 
+                Broadly, this finding enables backward-compatible model upgrades, 
+                avoiding costly re-embedding, and has implications for the privacy of 
+                learned representations.
+            </p>
+        </div>
+    </details>
+    <br>
+    <hr>
+    <br>
+
+    <center>
+        <h1>Motivation and Intuition</h1>
+    </center>
+    <br>
+    <p id="teaser-description">
+        Consider two multimodal contrastive models $\mathcal{M} = (f, g)$ and $\tilde{\mathcal{M}} = (\tilde{f}, \tilde{g})$, trained in complete isolation on different datasets, 
+        with different architectures, initializations, and modeling choices. Due to optimization stochasticity and training 
+        differences, the embedding spaces of $\mathcal M$ and $\tilde{\mathcal M}$ are a priori incomparable. 
+        Even with identical data, jointly rotating both embeddings by any orthogonal matrix leaves 
+        the loss and all within-model similarities unchanged. Architectural mismatch, finite-sample noise, 
+        and optimization effects further amplify this ambiguity; under distribution shift, the models may not even share the same population optimum. So we ask:
+    </p>
+    <div class="question-block">
+        <h2 class="question-title">Key Question</h2>
+        <p class="question-text">Given two independently trained multimodal models, does a systematic geometric relationship exist between their embedding spaces? If so, what is its form, and how does it differ across modalities?</p>
+    </div>
+    <!-- <div class="teaser-block">
+        <figure class="wrap-figure-right">
+            <img src="./webpage_assets/mainpaper_modality_gap.jpg" alt="ReasonCACHE parameter efficiency results">
+        </figure>
+        <p id="teaser-description">
+            Answering the dependence on modality is nontrivial due to the intrinsic geometry of multimodal contrastive representations. 
+            If matched image-text pairs collapsed to approximately the same point on the hypersphere 
+            (i.e., $f(x)\approx g(y)$), then aligning the image manifold would be equivalent to aligning the 
+            text manifold. In practice, however, contrastive models exhibit a pronounced <em>modality gap</em> 
+            where image and text embeddings occupy largely disjoint regions of the sphere. Prior work also 
+            suggests that naïvely "closing" this gap can harm downstream performance and 
+            fairness, as shown in the figure.
+        </p>
+        <div class="wrap-clear"></div>
+    </div> -->
+    <br>
+    <p id="teaser-description">
+        Despite the modality gap and disjoint supports of the two models, we argue that the 
+        alignment problem is indeed solvable because <span id="bold"><em>relative geometry is remarkably stable</em></span>. 
+        While the absolute coordinates of the embedding cones shift arbitrarily 
+        between models, the angular arrangement of the texts with respect to the images remains consistent. 
+        Mathematically, this means that the <em>multimodal kernels</em> are approximately preserved across models: 
+        $\langle f, g \rangle \approx \langle \tilde{f}, \tilde{g} \rangle$. 
+        Strikingly, this preservation of multimodal kernels is a 
+        sufficient condition to constrain the functional form of map between the two models, forcing it to be an isometry.
+    </p>
+    <figure class="content-figure">
+        <img src="./webpage_assets/mainpaper_crossmodal_kernels_v2.jpg" alt="Cross-modal kernels preserved across models">
+        <figcaption>Figure: Across CLIP variants, the multimodal kernel (relative angles between image and text
+             embeddings) is strongly preserved (dashed lines)); (b) CKA on multimodal kernels shows 
+             high alignment across models.</figcaption>
+    </figure>
+    
+    <br><br>
+    <hr>  
+    <br>
+    <center>
+        <h1>Theoretical Insights</h1>
+    </center>
+    <p id="teaser-description">Theoretically, we prove the following:</p>
+    <ol class="insight-list">
+        <li><span id="bold">Agreement of Multimodal Kernels.</span> Under mild assumptions on the data curation process of the two models, the induced multimodal kernels can agree up to a constant factor.</span></li>
+        <li><span id="bold">Identifiability of the Orthogonal Map.</span> If these multimodal kernels agree on a sufficiently rich but <em>small finite</em> set of anchors across the two models, then there exists a single global orthogonal map that aligns the image representations across models, and the same map simultaneously aligns the text representations across models.</li>
+        <li><span id="bold">Generalization of the Orthogonal Map.</span> The above result also generalizes to settings where the multimodal kernels agree only approximately.</li>
+    </ol>
+    
+    <figure class="content-figure">
+        <img src="./webpage_assets/theory_fig.jpg" alt="Theoretical insights">
+        <figcaption>Figure: Theoretically, we show that if the multimodal kernels induced by two contrastive models
+            agree on a sufficiently rich but <em>small finite</em> set of anchors, a single global 
+            orthogonal map aligns their representations across both modalities.</figcaption>
+    </figure>
+    <br>
+
+    <br><br>
+    <hr>  
+    <br>
+    <center>
+        <h1>Experimental Findings</h1>
+    </center>
+    <br>
+    <p id="teaser-description">We evaluate three independently trained vision-language pairs: (i) CLIP ViT-B/32 (OpenAI) and CLIP ViT-B/32 trained on LAION-400M; (ii) CLIP ViT-L/14 (OpenAI) and SigLIP; (iii) CLIP ViT-L/14 (OpenAI) and FLAVA on the datasets: Oxford-IIIT Pets, CIFAR-100, Caltech-101, STL10 and DTD. We report the following evaluation metrics:</p>
+    <ul class="content-list">
+        <li><em>Instance level cosine similarity</em>, measured between aligned and target embeddings for either images or texts;</li>
+        <li><em>Top-1 retrieval across models within a modality</em>, evaluated for both image–image (called Image retrieval accuracy) and text–text (called Text retrieval accuracy) by nearest-neighbor matching at the <em>class</em> level.</li>
+        <li><em>Zero-shot classification</em>, measured for transformed images against target text (denoted aligned image–text), target images against transformed text (image–aligned text), and both transformed images and transformed text (aligned image–aligned text).</li>
+    </ul>
+    <p id="teaser-description">Across all experiments, we fit the map $\mathcal Q$ using only images i.e $\tilde{f}(x) \approx Q f(x)$ and test it across both modalities.</p>
+    <br>
+    <h4 id="teaser-description" style="text-align: left;"><span id="bold">1. Independently Trained Contrastive Models Differ by an Orthogonal Map Common To Both Modalities</span></h4>
+    <div class="teaser-block">
+        <figure class="wrap-figure-left" style="--wrap-figure-width: 65%;">
+            <img src="./webpage_assets/mainfig_img_results.jpg" alt="Alternative Alignment Maps Than The Orthogonal Mapping">
+            <!-- <figcaption>ReasonCACHE is data efficient across regimes.</figcaption> -->
+        </figure>
+        <p id="teaser-description">
+        (a) <span id="bold">An Orthogonal Map Aligns Different Models.</span> We first observe a that a <em>single orthogonal map</em>
+         well approximates the inter-model relationship between <em>image</em> embeddings by significantly improving the image-image cosine<span class="affil-sup affil-sup-red">*</span> and retrieval accuracy 
+        <br><br>
+        </p>
+        <div class="wrap-clear"></div>
+    </div>
+
+    <div class="teaser-block">
+        <figure class="wrap-figure-left" style="--wrap-figure-width: 70%;">
+            <img src="./webpage_assets/mainfig_text_results.jpg" alt="Alternative Alignment Maps Than The Orthogonal Mapping">
+            <!-- <figcaption>ReasonCACHE is data efficient across regimes.</figcaption> -->
+        </figure>
+        <p id="teaser-description">
+        (b) <span id="bold">This Map Transfers Across Modalities.</span> The same orthogonal map $\mathcal Q$ fit using images 
+            sharply improves <em>text</em> alignment, boosting text-text cosine<span class="affil-sup affil-sup-red">*</span> and retrieval from near-chance toward near-oracle levels. 
+        </p>
+        <div class="wrap-clear"></div>
+    </div>
+    <p id="teaser-description">Finally, image-to-aligned-text retrieval remains strong, 
+        showing that $\mathcal Q$ preserves task-relevant geometry while eliminating any need to compute the second model's text embeddings. <br><br>
+        <span class="affil-sup affil-sup-red">*</span><em>pointwise cosine similarity is measured after adjusting for means of image and text distribtions.</em>
+    </p>
+    <br><br>
+
+    <h4 id="teaser-description" style="text-align: left;"><span id="bold">2. Only a Few Data Points Are Needed to Learn the Orthogonal Map</span></h4>
+    <div class="teaser-block">
+        <figure class="wrap-figure-left" style="--wrap-figure-width: 40%;">
+            <img src="./webpage_assets/oxford_A=ViT-L-14-openai__B=siglip-google_siglip-base-patch16-224_5_img_B_to_aligned_text_A.jpg" alt="Only a Few Data Points Are Needed to Learn the Orthogonal Map">
+            <!-- <figcaption>Sample left-wrapped figure.</figcaption> -->
+        </figure>
+        <p id="teaser-description">
+            Theoretically, we proved if the multimodal kernels induced by two contrastive models 
+            agree on a sufficiently rich but <em>small finite</em> set of anchors, a single global 
+            orthogonal map aligns their representations across both modalities. We empirically 
+            validate this, fitting $\mathcal Q$ using images from only 
+            $N$ classes and evaluating transfer on the remaining unseen classes. Performance on both 
+            seen and unseen classes improves quickly with just a few anchor classes and 
+            saturates around 10 classes, after which additional 
+            anchors provide little benefit. Thus, practitioners can recover near-full cross-model 
+            transfer by fitting $\mathcal Q$ on a lightweight image-only calibration set, 
+            rather than curating large-scale cross-model supervision. 
+
+        </p>
+        <div class="wrap-clear"></div>
+    </div>
+    <br><br>
+
+    <!-- <h4 id="teaser-description" style="text-align: left;"><span id="bold">3. The Orthogonal Map Generalizes Broadly</span></h4>
+    <div class="teaser-block">
+        <div class="wrap-figure-right wrap-figure-carousel" style="--wrap-figure-width: 37%;">
+            <div id="aligner-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="./webpage_assets/mainpaper_cross_aligned_img_aligned_text.jpg" alt="Alignment map comparison 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="./webpage_assets/mainpaper_cross_img_aligned_text.jpg" alt="Alignment map comparison 2">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#aligner-carousel" role="button" data-slide="prev" aria-label="Previous">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#aligner-carousel" role="button" data-slide="next" aria-label="Next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+                <ol class="carousel-indicators">
+                    <li data-target="#aligner-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#aligner-carousel" data-slide-to="1"></li>
+                </ol>
+            </div>
+        </div>
+        <p id="teaser-description">
+            The previous experiment shows that $\mathcal Q$ is identifiable from a few anchors and 
+            generalizes to unseen classes within the same dataset. We next ask a stronger version of 
+            this question: does the <em>same</em> $\mathcal Q$ transfer to a completely new downstream 
+            distribution <em>without</em> re-fitting? Because orthogonal maps preserve inner products, 
+            a map $\mathcal Q$ fit on Oxford (resp., Caltech) recovers essentially the same zero-shot 
+            performance on Caltech (resp., Oxford) as a map fit in-domain. Image-aligned text class 
+            retrieval remains strong upon transfer, indicating that $\mathcal Q$ generalizes 
+            beyond the calibration dataset. 
+
+        </p>
+        <div class="wrap-clear"></div>
+    </div>
+    <br><br> -->
+
+    <h4 id="teaser-description" style="text-align: left;"><span id="bold">3. Alternative Alignment Maps Than The Orthogonal Mapping</span></h4>
+    
+    <div class="teaser-block">
+        <figure class="wrap-figure-right">
+            <img src="./webpage_assets/compare_aligner_oxford__ImageB_to_Aligned_TextA.jpg" alt="Alternative Alignment Maps Than The Orthogonal Mapping">
+            <!-- <figcaption>ReasonCACHE is data efficient across regimes.</figcaption> -->
+        </figure>
+        <p id="teaser-description">
+            Here, we ablate the alignment design by comparing three maps of increasing expressiveness: 
+            (i) an orthogonal map $Q$, (ii) a linear map, and (iii) a non-linear MLP. 
+            More expressive maps improve <em>pointwise</em> text-text cosine similarity. However, they don't 
+            preserve image-text geometry, and the orthogonal map consistently performs best on geometry-sensitive 
+            downstream metrics. 
+        </p>
+        <div class="wrap-clear"></div>
+    </div>
+    <br><br>
+    
+    <h4 id="teaser-description" style="text-align: left;"><span id="bold">4. Commuting Diagrams Across Models and Modalities</span></h4>
+    <p id="teaser-description">
+        Both routes (direct and text mediated maps) yield highly consistent semantic neighborhoods: 
+        images retrieved via the text-mediated route closely match those obtained by direct image alignment.
+        This indicates that $\mathcal Q$ approximately commutes with the cross-modal nearest-neighbor operators, allowing
+        to move across <em>modalities</em> and <em>models</em> while preserving semantic relationships.
+    </p>
+
+    <div class="commuting-diagram-wrap">
+        <div class="cd-card">
+            <div class="cd-hdr">
+                <em>Hover over the arrows</em>
+            </div>
+            <div class="cd-diagram">
+                <div class="cd-diagram-inner">
+                    <svg viewBox="-60 0 600 560" role="img" aria-label="Commuting diagram: two paths between models">
+                        <defs>
+                            <marker id="commuting-arrowHead" markerWidth="40" markerHeight="40" refX="40" refY="20" orient="auto" markerUnits="userSpaceOnUse">
+                                <path d="M 0 0 L 40 20 L 0 40 z" fill="#555"></path>
+                            </marker>
+                            <marker id="commuting-arrowHeadActive" markerWidth="40" markerHeight="40" refX="40" refY="20" orient="auto" markerUnits="userSpaceOnUse">
+                                <path d="M 0 0 L 40 20 L 0 40 z" fill="#EB7CB5"></path>
+                            </marker>
+                        </defs>
+                        <!-- Ellipses: left = x_A & y_A (blue), right = tilde{x}_B & tilde{y}_B (coral) -->
+                        <ellipse cx="70"  cy="290" rx="120" ry="250" fill="rgba(131,198,213, 0.6)" stroke="rgba(131,198,213, 1.)" stroke-width="1.5"/>
+                        <ellipse cx="410" cy="290" rx="120" ry="250" fill="rgba(167, 206, 101, 0.6)" stroke="rgba(167, 206, 101, 1.)" stroke-width="1.5"/>
+                        <!-- top horizontal Rarrow -->
+                        <path id="commuting-p1" class="cd-arrow" d="M 130 125 L 360 125" marker-end="url(#commuting-arrowHead)"></path>
+                        <rect id="commuting-hit-p1" class="cd-hitbox" x="210" y="55" width="110" height="70" rx="10"></rect>
+                        <!-- left vertical arrow -->
+                        <path id="commuting-p2a" class="cd-arrow" d="M 80 180 L 80 425" marker-end="url(#commuting-arrowHead)"></path>
+                        <rect id="commuting-hit-p2a" class="cd-hitbox" x="70" y="190" width="50" height="170" rx="10"></rect>
+                        <!-- bottom horizontal arrow -->
+                        <path id="commuting-p2b" class="cd-arrow" d="M 130 465 L 360 465" marker-end="url(#commuting-arrowHead)"></path>
+                        <rect id="commuting-hit-p2b" class="cd-hitbox" x="210" y="410" width="110" height="70" rx="10"></rect>
+                        <!-- right vertical arrow -->
+                        <path id="commuting-p2c" class="cd-arrow" d="M 405 420 L 405 175" marker-end="url(#commuting-arrowHead)"></path>
+                        <rect id="commuting-hit-p2c" class="cd-hitbox" x="360" y="190" width="70" height="190" rx="10"></rect>
+                    </svg>
+                    <div class="cd-math-overlay" aria-hidden="true">
+                        <span class="cd-math-node cd-math-xa">$x_A$</span>
+                        <span class="cd-math-node cd-math-ya">$y_A$</span>
+                        <span class="cd-math-node cd-math-xb">$\tilde{x}_B$</span>
+                        <span class="cd-math-node cd-math-yb">$\tilde{y}_B$</span>
+                        <span class="cd-math-edge cd-math-psi-top">$\mathcal{Q}$</span>
+                        <span class="cd-math-edge cd-math-fa">$f_A$</span>
+                        <span class="cd-math-edge cd-math-psi-bot">$\mathcal{Q}$</span>
+                        <span class="cd-math-edge cd-math-fb">$f_B^{-1}$</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="cd-hint">
+                Hover direct <span class="cd-kbd">ψ</span> (top) → Path 1 + Subfigure 1. Hover any composed-path arrow → Path 2 + Subfigure 2.
+            </div> -->
+        </div>
+        <div class="cd-card">
+            <!-- <div class="cd-hdr">Path 1 vs Path</div> -->
+            <div class="cd-subfig-grid">
+                <div id="commuting-subfig-1" class="cd-subfig">
+                    <div class="cd-title">
+                        <span class="cd-title-text"><em>Direct Map $\mathcal{Q}$ between $x_A$ and $\tilde{x}_B$ between models $A$ and $B$</em></span>
+                        <!-- <span class="cd-pill">hover top ψ</span> -->
+                    </div>
+                    <div class="cd-body"><img class="cd-subfig-img" src="./webpage_assets/knn1.jpg" alt="Path 1: direct map"></div>
+                </div>
+                <div id="commuting-subfig-2" class="cd-subfig">
+                    <div class="cd-title">
+                        <span class="cd-title-text"><em>Text Mediated Map $f_B^{-1} \circ \mathcal{Q}  \circ f_A$ between models $A$ and $B$</em></span>
+                        <!-- <span class="cd-pill">hover path 2</span> -->
+                    </div>
+                    <div class="cd-body"><img class="cd-subfig-img" src="./webpage_assets/knn2.jpg" alt="Path 2: composed path"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var sub1 = document.getElementById("commuting-subfig-1");
+        var sub2 = document.getElementById("commuting-subfig-2");
+        var p1 = document.getElementById("commuting-p1");
+        var p2a = document.getElementById("commuting-p2a");
+        var p2b = document.getElementById("commuting-p2b");
+        var p2c = document.getElementById("commuting-p2c");
+        var marker = "url(#commuting-arrowHead)";
+        var markerActive = "url(#commuting-arrowHeadActive)";
+        function setMarker(el, active) { if (el) el.setAttribute("marker-end", active ? markerActive : marker); }
+        function clearAll() {
+            [p1, p2a, p2b, p2c].forEach(function(p) { p.classList.remove("active"); setMarker(p, false); });
+            if (sub1) sub1.classList.remove("active");
+            if (sub2) sub2.classList.remove("active");
+        }
+        function activatePath1() {
+            clearAll();
+            if (p1) { p1.classList.add("active"); setMarker(p1, true); }
+            if (sub1) sub1.classList.add("active");
+            if (sub2) sub2.classList.remove("active");
+        }
+        function activatePath2() {
+            clearAll();
+            [p2a, p2b, p2c].forEach(function(p) { if (p) { p.classList.add("active"); setMarker(p, true); } });
+            if (sub1) sub1.classList.remove("active");
+            if (sub2) sub2.classList.add("active");
+        }
+        var hitP1 = document.getElementById("commuting-hit-p1");
+        var hitP2a = document.getElementById("commuting-hit-p2a");
+        var hitP2b = document.getElementById("commuting-hit-p2b");
+        var hitP2c = document.getElementById("commuting-hit-p2c");
+        if (hitP1) { hitP1.addEventListener("mouseenter", activatePath1); hitP1.addEventListener("mouseleave", clearAll); }
+        [hitP2a, hitP2b, hitP2c].forEach(function(hit) {
+            if (hit) { hit.addEventListener("mouseenter", activatePath2); hit.addEventListener("mouseleave", clearAll); }
+        });
+        if (sub1) { sub1.addEventListener("mouseenter", activatePath1); sub1.addEventListener("mouseleave", clearAll); }
+        if (sub2) { sub2.addEventListener("mouseenter", activatePath2); sub2.addEventListener("mouseleave", clearAll); }
+        clearAll();
+    })();
+    </script>
+
+    <br><br>
+    <hr>  
+    <br>
+    <center>
+        <h1>Discussion and Implications</h1>
+    </center>
+    <br>
+    <p id="teaser-description">Our results have several practical and scientific implications.</p>
+    <ol class="insight-list">
+        <li><span id="bold">Re-embedding is not necessary.</span> In large embedding systems, switching models typically triggers full re-embedding, often infeasible at modern scale (billions of vectors) and costly in both time and compute. We show that a small anchor set can recover the orthogonal map that restores compatibility across models. Since it preserves inner products, it supports model upgrades without re-encoding while keeping the embedding geometry intact.</li>
+        <li><span id="bold">Mix-and-Match Models.</span> Models often specialize differently; one might have a stronger vision tower, while another has a stronger or multilingual text tower. Our approach lets practitioners swap and combine towers while preserving image-text geometry.</li>
+        <li><span id="bold">Privacy and Security.</span> Many deployments cannot retain or share raw text (privacy, licensing, retention), yet they store embeddings. Aligning text representations without accessing text has key implications for governance and security. If embeddings across models and modalities are easily transformable, then stored embeddings may encode more transferable semantic information than anticipated, reinforcing the need to treat embeddings as sensitive artifacts.</li>
+    </ol>
+
+    <br><br>
+    <hr><br>
+    
+    <p id="teaser-description">To cite this work, please use the following bibtex:</p>
+    <div class="bibtex-wrap">
+        <div id="bibtex-code">
+            <button id="copy-button"
+                    style="position: absolute; 
+                           top: 20px; 
+                           right: 20px; 
+                           background: transparent; 
+                           border: none; 
+                           cursor: pointer; 
+                           padding: 8px;
+                           outline: none;
+                           transition: all 0.3s ease;"
+                    >
+                <svg id="copy-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" style="transition: stroke 0.3s ease;">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+            </button>
+            <pre id="bibtex-text">
+@inproceedings{sharut2026canonicalizing,
+    title={Canonicalizing Multimodal Contrastive Representation Learning},
+    author={Gupta, Sharut and Kansal, Sanyam and Jegelka, Stefanie and 
+        Isola, Phillip and Garg, Vikas},
+    journal={arXiv preprint arXiv:2602.02366},
+    year={2026}
+}</pre>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+    <br>
+    <hr>
+    </div>
+</body>
+
+</html>

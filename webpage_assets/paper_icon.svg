@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180" role="img" aria-label="Paper">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- back sheets -->
+  <g filter="url(#shadow)">
+    <rect x="54" y="24" width="110" height="140" rx="2" fill="#ffffff" stroke="#cfcfcf"/>
+    <rect x="48" y="30" width="110" height="140" rx="2" fill="#ffffff" stroke="#cfcfcf"/>
+  </g>
+
+  <!-- front sheet -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="18" width="110" height="140" rx="2" fill="#ffffff" stroke="#bdbdbd"/>
+    <!-- header bar -->
+    <rect x="72" y="34" width="86" height="10" rx="1" fill="#eaf6f5"/>
+    <!-- lines -->
+    <rect x="72" y="56" width="80" height="6" rx="1" fill="#e6e6e6"/>
+    <rect x="72" y="70" width="74" height="6" rx="1" fill="#e6e6e6"/>
+    <rect x="72" y="84" width="80" height="6" rx="1" fill="#e6e6e6"/>
+    <rect x="72" y="98" width="68" height="6" rx="1" fill="#e6e6e6"/>
+    <rect x="72" y="112" width="76" height="6" rx="1" fill="#e6e6e6"/>
+    <!-- figure placeholder -->
+    <rect x="72" y="126" width="80" height="22" rx="2" fill="#f4f4f4" stroke="#e1e1e1"/>
+  </g>
+</svg>
+
