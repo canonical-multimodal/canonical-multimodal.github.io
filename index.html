@@ -524,6 +524,18 @@
     </div>
     
     <script src="main.js"></script>
+    <script>
+      (function() {
+        function keepMuted(video) {
+          video.muted = true;
+          video.volume = 0;
+        }
+        document.querySelectorAll('.teaser-video').forEach(function(v) {
+          keepMuted(v);
+          v.addEventListener('volumechange', function() { keepMuted(v); });
+        });
+      })();
+    </script>
     <br>
     <hr>
     </div>
