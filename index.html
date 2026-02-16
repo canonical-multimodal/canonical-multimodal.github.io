@@ -31,7 +31,7 @@
     <meta property="og:image" content="./webpage_assets/teaser.jpg">
     <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
     <meta property="og:title" content="Canonicalizing Multimodal Contrastive Representation Learning">
-    <meta property="og:description" content=" Across independently trained multimodal contrastive models, a single orthogonal map learned from a small set of points in one modality (say images) aligns both image and text embeddings."
+    <meta property="og:description" content=" Across independently trained multimodal contrastive models, a single orthogonal map learned from a small set of points in one modality (say images) aligns both image-image and text-text embeddings across models."
 
     <!-- Get from Google Analytics -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -59,7 +59,7 @@
                         <div class="hero-action-label">Paper</div>
                         <img class="hero-action-icon" src="./webpage_assets/paper_icon.svg" alt="">
                     </a>
-                    <a class="hero-action hero-action--code" href="#" target="_blank" rel="noopener noreferrer" aria-label="Code">
+                    <a class="hero-action hero-action--code" href="https://github.com/Sharut/canonical-multimodal-rep" target="_blank" rel="noopener noreferrer" aria-label="Code">
                         <div class="hero-action-label">Code</div>
                         <i class="fab fa-github hero-action-icon hero-action-icon--fa" aria-hidden="true"></i>
                     </a>
@@ -254,7 +254,7 @@
         </figure>
         <p id="teaser-description">
         (a) <span id="bold">An Orthogonal Map Aligns Different Models.</span> We first observe a that a <em>single orthogonal map</em>
-         well approximates the inter-model relationship between <em>image</em> embeddings by significantly improving the image-image cosine<span class="affil-sup affil-sup-red">*</span> and retrieval accuracy 
+        almost perfectly aligns <em>image</em> embeddings across distinct models by significantly improving the image-image cosine and retaining high aligned-image-to-text accuracy. 
         <br><br>
         </p>
         <div class="wrap-clear"></div>
@@ -267,20 +267,20 @@
         </figure>
         <p id="teaser-description">
         (b) <span id="bold">This Map Transfers Across Modalities.</span> The same orthogonal map $\mathcal Q$ fit using images 
-            sharply improves <em>text</em> alignment, boosting text-text cosine<span class="affil-sup affil-sup-red">*</span> and retrieval from near-chance toward near-oracle levels. 
+            sharply improves <em>text</em> alignment, boosting pointwise text-text cosine from near zero to $\sim 0.6 - 0.8$. 
         </p>
         <div class="wrap-clear"></div>
     </div>
     <p id="teaser-description">Finally, image-to-aligned-text retrieval remains strong, 
         showing that $\mathcal Q$ preserves task-relevant geometry while eliminating any need to compute the second model's text embeddings. <br><br>
-        <span class="affil-sup affil-sup-red">*</span><em>pointwise cosine similarity is measured after adjusting for means of image and text distribtions.</em>
+        <!-- <span class="affil-sup affil-sup-red">*</span><em>pointwise cosine similarity is measured after adjusting for means of image and text distribtions.</em> -->
     </p>
     <br><br>
 
     <h4 id="teaser-description" style="text-align: left;"><span id="bold">2. Only a Few Data Points Are Needed to Learn the Orthogonal Map</span></h4>
     <div class="teaser-block">
         <figure class="wrap-figure-left" style="--wrap-figure-width: 40%;">
-            <img src="./webpage_assets/oxford_A=ViT-L-14-openai__B=siglip-google_siglip-base-patch16-224_5_img_B_to_aligned_text_A.jpg" alt="Only a Few Data Points Are Needed to Learn the Orthogonal Map">
+            <img src="./webpage_assets/oxford_A=ViT-L-14-openai__B=flava-facebook_flava-full_4_aligned_img_to_aligned_text.jpg" alt="Only a Few Data Points Are Needed to Learn the Orthogonal Map">
             <!-- <figcaption>Sample left-wrapped figure.</figcaption> -->
         </figure>
         <p id="teaser-description">
@@ -290,7 +290,7 @@
             validate this, fitting $\mathcal Q$ using images from only 
             $N$ classes and evaluating transfer on the remaining unseen classes. Performance on both 
             seen and unseen classes improves quickly with just a few anchor classes and 
-            saturates around 10 classes, after which additional 
+            saturates around 10-15 classes, after which additional 
             anchors provide little benefit. Thus, practitioners can recover near-full cross-model 
             transfer by fitting $\mathcal Q$ on a lightweight image-only calibration set, 
             rather than curating large-scale cross-model supervision. 
@@ -343,14 +343,15 @@
     
     <div class="teaser-block">
         <figure class="wrap-figure-right">
-            <img src="./webpage_assets/compare_aligner_oxford__ImageB_to_Aligned_TextA.jpg" alt="Alternative Alignment Maps Than The Orthogonal Mapping">
+            <img src="./webpage_assets/compare_aligner_oxford__Aligned_ImageA_to_Aligned_TextB.jpg" alt="Alternative Alignment Maps Than The Orthogonal Mapping">
             <!-- <figcaption>ReasonCACHE is data efficient across regimes.</figcaption> -->
         </figure>
         <p id="teaser-description">
             Here, we ablate the alignment design by comparing three maps of increasing expressiveness: 
             (i) an orthogonal map $Q$, (ii) a linear map, and (iii) a non-linear MLP. 
-            More expressive maps improve <em>pointwise</em> text-text cosine similarity. However, they don't 
-            preserve image-text geometry, and the orthogonal map consistently performs best on geometry-sensitive 
+            More expressive maps improve <em>pointwise</em> image-image cosine similarity. However, they 
+            transfer poorly to the secondary modality (text in this case) and fail to preserve image–text geometry.
+            In contrast, the orthogonal map consistently performs best on both text-text cosine similarity and geometry-sensitive 
             downstream metrics. 
         </p>
         <div class="wrap-clear"></div>
