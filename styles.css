@@ -530,6 +530,74 @@ sup {
     box-sizing: border-box;
 }
 
+/* Inline citations: superscript number linking to References */
+.cite-num {
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 0;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.35em;
+}
+.cite-num a {
+    color: #c00;
+    text-decoration: none;
+    padding: 0 0.05em;
+    border-radius: 2px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.cite-num a:hover {
+    color: #a00;
+    background-color: rgba(204, 0, 0, 0.08);
+}
+.cite-num a:focus {
+    outline: 1px dotted #6c757d;
+    outline-offset: 2px;
+}
+
+/* References section */
+.references-list {
+    width: 1100px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    list-style: none;
+    counter-reset: ref-counter;
+}
+.references-list .ref-item {
+    counter-increment: ref-counter;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.08rem;
+    color: #343a40;
+    line-height: 1.55;
+}
+.references-list .ref-item::before {
+    content: "[" counter(ref-counter) "] ";
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: #555;
+}
+.references-list .ref-item .ref-title {
+    font-weight: 400;
+    color: #00a1ff;
+    text-decoration: none;
+}
+.references-list .ref-item .ref-title:hover {
+    text-decoration: underline #f14d68;
+    text-decoration-thickness: 2px;
+}
+.references-list .ref-item a {
+    color: #00a1ff;
+    text-decoration: none;
+}
+.references-list .ref-item a:hover {
+    text-decoration: underline #f14d68;
+    text-decoration-thickness: 2px;
+}
+
 /* BibTeX block – full content width, same look as TLDR */
 .bibtex-wrap {
     width: 100%;

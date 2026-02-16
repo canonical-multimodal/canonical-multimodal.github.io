@@ -89,7 +89,7 @@
                 <span class="author-name"><a href="http://web.mit.edu/phillipi/" target="_blank">Phillip Isola</a><sup class="affil-sup">†</sup></span>
             </div>
             <div class="author">
-                <span class="author-name"><a href="https://people.csail.mit.edu/vgarg/" target="_blank">Vikas Garg</a><sup class="affil-sup">¶</sup></span>
+                <span class="author-name"><a href="https://people.csail.mit.edu/vgarg/" target="_blank">Vikas Garg</a><sup class="affil-sup">¶,</sup><sup class="affil-sup">$\circ$</sup></span>
             </div>
         </div>
         <table align="center" width="500px" style="font-size: 21px;">
@@ -112,6 +112,10 @@
                     <td align="center" style="padding-top:10px; padding-left:12px; padding-right:12px; white-space: nowrap;">
                         <sup style="padding-right: 2px;">¶ </sup> Aalto University
                     </td>
+                    <td align="center" style="padding-top:10px; padding-left:12px; padding-right:12px; white-space: nowrap;">
+                        <sup style="padding-right: 2px;">$\circ$ </sup> YaiYai Ltd.
+                    </td>
+
                 </tr>
             </tbody>
         </table>
@@ -129,7 +133,7 @@
     <div class="tldr-block">
         <h2 class="tldr-title">TLDR</h2>
         <p class="tldr-text">We show that the map between any two independently trained 
-            multimodal contrastive models can be well approximated by a <span id="bold">orthogonal map</span>, 
+            multimodal contrastive models can be well approximated by a <span id="bold">orthogonal map</span>, that is
             <em>shared across modalities</em> and 
             learnable from only a few data points in one (images or text) modality.</p>
     </div>
@@ -194,9 +198,9 @@
     </div> -->
     <br>
     <p id="teaser-description">
-        Despite the modality gap and disjoint supports of the two models, we argue that the 
+        Despite the modality gap<sup class="cite-num"><a href="#ref1">1</a></sup> and disjoint supports of the two models, we argue that the 
         alignment problem is indeed solvable because <span id="bold"><em>relative geometry is remarkably stable</em></span>. 
-        While the absolute coordinates of the embedding cones shift arbitrarily 
+        While the absolute coordinates of the embedding cones<sup class="cite-num"><a href="#ref1">1,</a></sup><sup class="cite-num"><a href="#ref2">2</a></sup> shift arbitrarily 
         between models, the angular arrangement of the texts with respect to the images remains consistent. 
         Mathematically, this means that the <em>multimodal kernels</em> are approximately preserved across models: 
         $\langle f, g \rangle \approx \langle \tilde{f}, \tilde{g} \rangle$. 
@@ -493,7 +497,23 @@
 
     <br><br>
     <hr><br>
-    
+
+    <center>
+        <h1>References</h1>
+    </center>
+    <ol class="references-list" id="references">
+        <li id="ref1" class="ref-item">
+            <a href="https://arxiv.org/abs/2203.02053" target="_blank" rel="noopener noreferrer" class="ref-title">Mind the gap: Understanding the modality gap in multi-modal contrastive representation learning</a>. W. Liang, Y. Zhang, Y. Kwon, S. Yeung, and J. Zou, NeurIPS 2022.
+        </li>
+        <li id="ref2" class="ref-item">
+            <a href="https://www.mlmi.eng.cam.ac.uk/files/2021-2022_dissertations/understanding_and_fixing_the_modality_gap_in_vision-language_models_reduced.pdf" target="_blank" rel="noopener noreferrer" class="ref-title">Understanding and Fixing the Modality
+                Gap in Vision-Language Models</a>. V.Udandarao, <em>Master’s thesis, University of Cambridge</em>, 2022.
+        </li>
+    </ol>
+   
+    <br><br>
+    <hr><br>
+
     <p id="teaser-description">To cite this work, please use the following bibtex:</p>
     <div class="bibtex-wrap">
         <div id="bibtex-code">
