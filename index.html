@@ -242,7 +242,11 @@
         <h1>Experimental Findings</h1>
     </center>
     <br>
-    <p id="teaser-description">We evaluate three independently trained vision-language pairs: (i) CLIP ViT-B/32 (OpenAI) and CLIP ViT-B/32 trained on LAION-400M; (ii) CLIP ViT-L/14 (OpenAI) and SigLIP; (iii) CLIP ViT-L/14 (OpenAI) and FLAVA on the datasets: Oxford-IIIT Pets, CIFAR-100, Caltech-101, STL10 and DTD. We report the following evaluation metrics:</p>
+    <p id="teaser-description">We evaluate three independently trained vision-language pairs: (i) CLIP ViT-B/32 (OpenAI) and CLIP ViT-B/32 trained on LAION-400M; (ii) CLIP ViT-L/14 (OpenAI) and SigLIP; (iii) CLIP ViT-L/14 (OpenAI) and FLAVA on the datasets: Oxford-IIIT Pets, CIFAR-100, Caltech-101, STL10 and DTD. 
+        We use orthogonal Procrustes solution to estimate the orthogonal map $\mathcal Q$. In practice, 
+        the two models can differ by a constant offset in embedding space due to finite-sample effects. We 
+        therefore fit and apply $\mathcal Q$ on centered embeddings, and then re-add the target mean.
+        We report the following evaluation metrics:</p>
     <ul class="content-list">
         <li><em>Instance level cosine similarity</em>, measured between aligned and target embeddings for either images or texts;</li>
         <li><em>Top-1 retrieval across models within a modality</em>, evaluated for both image–image (called Image retrieval accuracy) and text–text (called Text retrieval accuracy) by nearest-neighbor matching at the <em>class</em> level.</li>
@@ -377,7 +381,7 @@
             </div>
             <div class="cd-diagram">
                 <div class="cd-diagram-inner">
-                    <svg viewBox="-60 0 600 560" role="img" aria-label="Commuting diagram: two paths between models">
+                    <svg viewBox="-60 0 600 640" role="img" aria-label="Commuting diagram: two paths between models">
                         <defs>
                             <marker id="commuting-arrowHead" markerWidth="40" markerHeight="40" refX="40" refY="20" orient="auto" markerUnits="userSpaceOnUse">
                                 <path d="M 0 0 L 40 20 L 0 40 z" fill="#555"></path>
@@ -386,6 +390,8 @@
                                 <path d="M 0 0 L 40 20 L 0 40 z" fill="#EB7CB5"></path>
                             </marker>
                         </defs>
+                        <text x="70" y="620" text-anchor="middle" fill="#333" class="cd-model-label" font-weight="600">Model A</text>
+                        <text x="410" y="620" text-anchor="middle" fill="#333" class="cd-model-label" font-weight="600">Model B</text>
                         <!-- Ellipses: left = x_A & y_A (blue), right = tilde{x}_B & tilde{y}_B (coral) -->
                         <ellipse cx="70"  cy="290" rx="120" ry="250" fill="rgba(131,198,213, 0.6)" stroke="rgba(131,198,213, 1.)" stroke-width="1.5"/>
                         <ellipse cx="410" cy="290" rx="120" ry="250" fill="rgba(167, 206, 101, 0.6)" stroke="rgba(167, 206, 101, 1.)" stroke-width="1.5"/>
