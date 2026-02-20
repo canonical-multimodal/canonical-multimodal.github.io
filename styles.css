@@ -148,6 +148,7 @@ body {
     font-weight: 300;
     font-size: 21px;
     margin: 0;
+    overflow-x: hidden;
 }
 h1, h2, h3, h4, h5, h6,
 .hero-title, .hero-action-label, .tldr-title, .abstract-dropdown-summary {
@@ -1012,11 +1013,14 @@ sup {
 /* Title row with paper thumbnail (matches Outline teal aesthetic) */
 .hero-header {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     display: grid;
     /* Use max-content so columns don't "stretch" and create huge gaps */
-    grid-template-columns: max-content 90px max-content 90px max-content;
+    grid-template-columns: minmax(0, 1fr) 48px max-content 48px minmax(0, max-content);
     align-items: center; /* vertical center vs Paper block */
     justify-content: center;
+    box-sizing: border-box;
 }
 .hero-title {
     font-size: 48px;
@@ -1051,8 +1055,10 @@ sup {
 
 .paper-and-logos {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start; /* align Paper and Code labels on same baseline */
     gap: 16px;
+    min-width: 0;
 }
 .hero-action {
     display: flex;
@@ -1129,6 +1135,15 @@ sup {
 @media (max-width: 1200px) {
     #page {
         width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Reserve left space so TOC / "Outline" toggle never overlaps the title when zoomed or narrow */
+@media (max-width: 1399px) {
+    #page {
+        margin-left: 320px;
+        max-width: calc(100vw - 320px);
         box-sizing: border-box;
     }
 }
